@@ -1,9 +1,9 @@
 [devshell]
 packages = [
-  "alejandra", # Formatter for nix
+  "alejandra",        # Formatter for nix
   "deno",
   "taplo-cli",
-  "npm",
+  "nodePackages.npm",
 ]
 
 [[commands]]
