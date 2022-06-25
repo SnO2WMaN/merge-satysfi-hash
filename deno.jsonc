@@ -1,9 +1,15 @@
 {
   "tasks": {
-    "run": "deno run ./mod.ts",
-    "compile:x86_64-linux": "deno compile --output=dist/out --target=x86_64-unknown-linux-gnu ./mod.ts",
-    "compile:x86_64-darwin": "deno compile --output=dist/out --target=x86_64-darwin ./mod.ts",
-    "compile:aarch64-darwin": "deno compile --output=dist/out --target=aarch64-darwin ./mod.ts"
+    "run": "deno run --import-map=./import_map.json --allow-read --allow-write ./mod.ts",
+    "cache": "deno cache --import-map=./import_map.json --lock lock.json --lock-write ./mod.ts",
+    "yojson": "npx tspeg ./yojson.peg ./yojson.ts"
+  },
+  "lint": {
+    "files": {
+      "exclude": [
+        "./yojson.ts"
+      ]
+    }
   },
   "fmt": {
     "options": {
@@ -14,7 +20,8 @@
     },
     "files": {
       "exclude": [
-        "./lock.json"
+        "./lock.json",
+        "./yojson.ts"
       ]
     }
   }

@@ -1,0 +1,9 @@
+{
+  "ipaexg":<"Single":{"src":"dist/fonts/ipaexg.ttf"}>,
+  "ipaexm":<"Single":{"src":"dist/fonts/ipaexm.ttf"}>,
+  "lmmono":<"Single":{"src":"dist/fonts/lmmono10-regular.otf"}>,
+  "lmroman":<"Single":{"src":"dist/fonts/lmroman10-regular.otf"}>,
+  "lmroman-b":<"Single":{"src":"dist/fonts/lmroman10-bold.otf"}>,
+  "lmroman-it":<"Single":{"src":"dist/fonts/lmroman10-italic.otf"}>,
+  "lmsans":<"Single":{"src":"dist/fonts/lmsans10-regular.otf"}>
+}

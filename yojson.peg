@@ -1,0 +1,39 @@
+Root := YoJSONObject
+
+Whitespace := ' ' | '\t' | '\r' | '\n'
+Quot := '"' actual='[a-zA-Z0-9_\-\/\.]*' '"'
+
+YoJSONObject := '{' p=YoJSONObjectProp sp={ ',' p=YoJSONObjectProp }* '}'
+  .actual = YoJSONObjectProp[] { return [p, ...sp.map(({p}) => p)]; }
+YoJSONObjectProp := Whitespace* key=YoJSONObjectPropKey Whitespace* ':' Whitespace* value=YoJSONObjectPropValue Whitespace*
+YoJSONObjectPropKey := Quot
+YoJSONObjectPropValue := YoJSONVariant
+
+YoJSONString := '"' actual='[a-zA-Z0-9_\-\/\.]*' '"'
+
+YoJSONVariant := '<' key=YoJSONObjectPropKey ':' value={ '{' key=Quot ':' value=YoJSONString '}' } '>'
+
+Key := actual='[a-zA-Z]*'
+Value := YoJSONBool
+
+
+YoJSONNull := literal='null'
+        .actual = null { return null; }
+
+YoJSONBool := YoJSONTrue | YoJSONFalse
+YoJSONTrue := literal='true'
+        .actual = boolean { return true; }
+YoJSONFalse := literal='false'
+        .actual = boolean { return false; }
+
+YoJSONFloat := YoJSONNaN | YoJSONPlusInfinity | YoJSONMinusInfinity
+YoJSONNaN := literal = 'NaN'
+       .actual = number {return Number(NaN);}
+YoJSONPlusInfinity := literal = '\+Infinity'
+       .actual = number {return Number(+Infinity);}
+YoJSONMinusInfinity := literal = '\-Infinity'
+       .actual = number {return Number(-Infinity);}
+
+
+ASCII := '[a-z][a-zA-Z0-9_-]*'
+
