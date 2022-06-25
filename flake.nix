@@ -33,12 +33,16 @@
         };
       in rec {
         packages.default = pkgs.deno2nix.mkExecutable {
-          name = "example";
+          name = "merge-satysfi-hash";
           version = "0.1.0";
           src = self;
-          lockfile = ./lock.json;
-          importMap = ./import_map.json;
-          entrypoint = ./mod.ts;
+          lockfile = "./lock.json";
+          importMap = "./import_map.json";
+          entrypoint = "./mod.ts";
+          denoFlags = [
+            "--allow-read"
+            "--allow-write"
+          ];
         };
 
         defaultPackage = packages.default;
